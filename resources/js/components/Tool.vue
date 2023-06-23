@@ -7,7 +7,7 @@
             <!-- Mediable EditMode: <span v-if="mediable.model_id">Edit</span><span v-else>Create</span> -->
             <div v-if="mediableMedia.length" class="gallery flex flex-wrap m-auto -mx-2 p-2">
                 <div class="w-1/4 px-2 mb-4" v-for="item in mediableMedia" :key="item.id" :title="item.name">
-                    <media-item :item="item" :height="48">
+                    <media-item :item="item" :height="52">
                             <mediable-toolbar v-on:update-mediable="updateMediable" :item="item" :mediable_media="mediableMedia" :mediable="mediable" :position="'right'" />
                     </media-item>
                 </div>
@@ -18,8 +18,8 @@
             <uploader v-if="uploaderOpen" :accept="config.accept" />
 
             <div v-if="media.data.length" class="gallery flex flex-wrap m-auto -mx-2 p-2">
-                <div class="w-1/5 px-2 mb-4" v-for="item in media.data" :key="item.id" :title="item.name">
-                    <media-item :item="item" :height="48">
+                <div class="w-1/4 px-2 mb-4" v-for="item in media.data" :key="item.id" :title="item.name">
+                    <media-item :item="item" :height="52">
 
                         <media-toolbar v-on:delete-media="deleteMedia" v-on:toggle-sidebar="toggleSidebar" :item="item" :position="'left'" />
 
