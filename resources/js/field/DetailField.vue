@@ -4,7 +4,7 @@
             <template v-slot:value>
                 <div class="laravel-mediable-manager">
                     <div v-if="mediableMedia.length" class="gallery flex flex-wrap m-auto -mx-2 p-2">
-                        <div class="w-1/4 px-2 mb-4" v-for="item in mediableMedia" :key="item.id" :title="item.name">
+                        <div class="w-1/3 px-2 mb-4" v-for="item in mediableMedia" :key="item.id" :title="item.name">
                             <media-item :item="item" :height="36">
                                 <mediable-toolbar v-on:update-mediable="updateMediable" :item="item" :mediable_media="mediableMedia" :mediable="mediable" :position="'right'" />
                             </media-item>
