@@ -1,12 +1,12 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager;
+namespace Khoahuynhvietswiss\NovaMediableManager;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
-use NaskaIt\NovaMediableManager\Http\Middleware\Authorize;
+use Khoahuynhvietswiss\NovaMediableManager\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -77,7 +77,7 @@ class ToolServiceProvider extends ServiceProvider
 
         Route::middleware(['nova', Authorize::class])
                 ->prefix('nova-vendor/nova-mediable-manager')
-                ->namespace('NaskaIt\NovaMediableManager\Http\Controllers')
+                ->namespace('Khoahuynhvietswiss\NovaMediableManager\Http\Controllers')
                 ->group(__DIR__.'/../routes/api.php');
     }
 

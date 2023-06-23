@@ -1,10 +1,10 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager;
+namespace Khoahuynhvietswiss\NovaMediableManager;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use NaskaIt\NovaMediableManager\Models\Media;
+use Khoahuynhvietswiss\NovaMediableManager\Models\Media;
 
 trait HasFlexibleMediable
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager\Http\Resources;
+namespace Khoahuynhvietswiss\NovaMediableManager\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

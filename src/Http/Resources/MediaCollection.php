@@ -1,13 +1,13 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager\Http\Resources;
+namespace Khoahuynhvietswiss\NovaMediableManager\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MediaCollection extends ResourceCollection
 {
 
-    public $collects = 'NaskaIt\NovaMediableManager\Http\Resources\Media';
+    public $collects = 'Khoahuynhvietswiss\NovaMediableManager\Http\Resources\Media';
     /**
      * Transform the resource collection into an array.
      *

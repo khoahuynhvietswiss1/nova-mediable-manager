@@ -1,6 +1,6 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager;
+namespace Khoahuynhvietswiss\NovaMediableManager;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;

@@ -1,5 +1,5 @@
 {
-    "name": "naska-it/nova-mediable-manager",
+    "name": "khoahuynhvietswiss/nova-mediable-manager",
     "description": "A Laravel Nova mediable manager tool and field.",
     "keywords": [
         "laravel",
@@ -17,13 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "NaskaIt\\NovaMediableManager\\": "src/"
+            "Khoahuynhvietswiss\\NovaMediableManager\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NaskaIt\\NovaMediableManager\\ToolServiceProvider"
+                "Khoahuynhvietswiss\\NovaMediableManager\\ToolServiceProvider"
             ]
         }
     },

@@ -1,12 +1,12 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager;
+namespace Khoahuynhvietswiss\NovaMediableManager;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Field;
-use NaskaIt\NovaMediableManager\Models\MediaUploader;
-use NaskaIt\NovaMediableManager\Models\Media;
-use NaskaIt\NovaMediableManager\Http\Resources\Media as MediaResource;
+use Khoahuynhvietswiss\NovaMediableManager\Models\MediaUploader;
+use Khoahuynhvietswiss\NovaMediableManager\Models\Media;
+use Khoahuynhvietswiss\NovaMediableManager\Http\Resources\Media as MediaResource;
 
 class Mediable extends Field
 {

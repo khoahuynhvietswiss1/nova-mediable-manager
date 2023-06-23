@@ -1,6 +1,6 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager;
+namespace Khoahuynhvietswiss\NovaMediableManager;
 
 use Illuminate\Http\UploadedFile;
 

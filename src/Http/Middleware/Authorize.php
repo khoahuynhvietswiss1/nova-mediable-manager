@@ -1,9 +1,9 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager\Http\Middleware;
+namespace Khoahuynhvietswiss\NovaMediableManager\Http\Middleware;
 
 use Laravel\Nova\Nova;
-use NaskaIt\NovaMediableManager\NovaMediableManager;
+use Khoahuynhvietswiss\NovaMediableManager\NovaMediableManager;
 
 class Authorize
 {

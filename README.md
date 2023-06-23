@@ -17,7 +17,7 @@ Laravel Nova Media Manager and Field to manage Polymorphic ManyToMany Relationsh
 ## Install
 ```bash
 composer require naska-it/nova-mediable-manager
-php artisan vendor:publish --provider="NaskaIt\NovaMediableManager\ToolServiceProvider"
+php artisan vendor:publish --provider="Khoahuynhvietswiss\NovaMediableManager\ToolServiceProvider"
 php artisan migrate
 php artisan storage:link
 ```
@@ -35,14 +35,14 @@ php artisan storage:link
 public function tools()
 {
     return [
-        new \NaskaIt\NovaMediableManager\NovaMediableManager
+        new \Khoahuynhvietswiss\NovaMediableManager\NovaMediableManager
     ];
 }
 ```
  Using Field - first add HasMedia trait to your model
 
 ```php
-use NaskaIt\NovaMediableManager\HasMedia;
+use Khoahuynhvietswiss\NovaMediableManager\HasMedia;
 
 class Page extends Model
 {
@@ -52,7 +52,7 @@ class Page extends Model
  Using Field - Nova Resource 
 
 ```php
-use NaskaIt\NovaMediableManager\Mediable;
+use Khoahuynhvietswiss\NovaMediableManager\Mediable;
 
 class Page extends Resource
 {
@@ -86,7 +86,7 @@ class Page extends Resource
 If you use Mediable field inside Flexible Layout
 
 ```php
-use NaskaIt\NovaMediableManager\Mediable;
+use Khoahuynhvietswiss\NovaMediableManager\Mediable;
 
 public function fields()
 {
@@ -102,7 +102,7 @@ public function fields()
 Add to your layout HasFlexibleMediable trait
 
 ```php
-use NaskaIt\NovaMediableManager\HasFlexibleMediable;
+use Khoahuynhvietswiss\NovaMediableManager\HasFlexibleMediable;
 
 class BlockLayout extends Layout
 {

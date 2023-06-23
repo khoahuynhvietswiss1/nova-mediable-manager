@@ -8,7 +8,7 @@
                 <img v-if="details.mime_type.startsWith('image')" class="w-full" :src="details.url" :alt="details.name" />
                 <div v-else class="w-full h-48 flex items-center justify-center">
                     <icon :type="'m-document'" :width="48" :height="48" class="fill-no-stroke-current" />
-                    <span class="">{{details.mime_type}}</span>
+                    <span style="margin-left: 25px" class="">{{details.name}}</span>
                 </div>
                 <div class=" px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{details.name}}</div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace NaskaIt\NovaMediableManager\Models;
+namespace Khoahuynhvietswiss\NovaMediableManager\Models;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Model;

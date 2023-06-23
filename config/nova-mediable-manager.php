@@ -5,7 +5,7 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'model' => NaskaIt\NovaMediableManager\Models\Media::class,
+    'model' => Khoahuynhvietswiss\NovaMediableManager\Models\Media::class,
 
     /**
      * Default filesystem disk.
