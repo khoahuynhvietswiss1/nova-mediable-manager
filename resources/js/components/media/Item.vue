@@ -5,7 +5,7 @@
             <icon :type="'m-document'" :width="48" :height="48" class="fill-no-stroke-current" />
           <div>
             <p class="">{{item.name}}</p>
-            <p class="">({{item.mime_type}})</p>
+            <p class="mt-2">({{item.url}})</p>
           </div>
 
         </div>
