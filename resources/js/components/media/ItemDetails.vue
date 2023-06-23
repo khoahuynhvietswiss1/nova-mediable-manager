@@ -6,7 +6,7 @@
             </span>
             <div class="p-2 bg-white max-w-sm rounded overflow-hidden shadow-lg" v-if="details">
                 <img v-if="details.mime_type.startsWith('image')" class="w-full" :src="details.url" :alt="details.name" />
-                <div v-else class="w-full h-48 flex items-center justify-center">
+                <div v-else class="w-full h-52 flex items-center justify-center">
                     <icon :type="'m-document'" :width="48" :height="48" class="fill-no-stroke-current" />
                     <span class="">{{details.mime_type}}</span>
                 </div>
