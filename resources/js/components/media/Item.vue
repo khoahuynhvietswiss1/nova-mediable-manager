@@ -3,9 +3,9 @@
         <img v-if="item.mime_type.startsWith('image')" :class="'h-' + height" class="object-cover w-full" :src="item.conversions.preview" :alt="item.name" />
         <div v-else :class="'h-' + height" class="w-full flex flex-col items-center justify-center">
             <icon :type="'m-document'" :width="48" :height="48" class="fill-no-stroke-current" />
-          <div style="width: 100%" class="w-full">
+          <div class="w-full px-2">
             <p class="">{{item.name}}</p>
-            <p class="mt-2">({{item.url}})</p>
+            <p style="overflow-wrap: break-word;" class="mt-2">{{item.url}}</p>
           </div>
 
         </div>
