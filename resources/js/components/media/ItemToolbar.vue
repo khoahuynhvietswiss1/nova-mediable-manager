@@ -1,5 +1,5 @@
 <template>
-    <div style="50px" class="item-toolbar" :class="position">
+    <div style="height: 50px" class="item-toolbar" :class="position">
         <a @click.prevent="$emit('toggle-sidebar', item)" class="toolbar-icon">
             <icon :type="'edit'" />
         </a>
