@@ -173,7 +173,14 @@ class MediaUploader
         $media->name = $this->name;
         $media->file_name = $this->fileName;
         $media->disk = $this->disk ?: config('nova-mediable-manager.disk');
-        $media->mime_type = $this->file->getMimeType();
+
+        $pattern = "/dwg/i";
+        if(preg_match_all($pattern, $this->file->getMimeType())) {
+            $media->mime_type = "application/octet-stream";
+        }else{
+            $media->mime_type = $this->file->getMimeType();
+        }
+
         $media->size = $this->file->getSize();
 
         $media->forceFill($this->attributes);
