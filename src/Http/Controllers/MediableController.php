@@ -2,39 +2,44 @@
 
 namespace Khoahuynhvietswiss\NovaMediableManager\Http\Controllers;
 
-use Khoahuynhvietswiss\NovaMediableManager\Models\Media;
-use Khoahuynhvietswiss\NovaMediableManager\MediaUploader;
+use NaskaIt\NovaMediableManager\Models\Media;
+use NaskaIt\NovaMediableManager\MediaUploader;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Khoahuynhvietswiss\NovaMediableManager\Http\Resources\Media as MediaResource;
+use NaskaIt\NovaMediableManager\Http\Resources\Media as MediaResource;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\App;
 
 class MediableController
 {
+    protected $model;
 
     public function __construct()
     {
         JsonResource::withoutWrapping();
+        $this->model = App::make(config('nova-mediable-manager.model'));
     }
 
     public function index()
     {
         $filter = $this->getItemFilters();
-
-        $data = Media::orderBy('created_at', 'desc')
-                    ->when($filter['name'], function ($query, $name) {
-                        $query->where('name', 'like', '%'.$name.'%');
-                    })
-                    ->when($filter['mime_type'], function ($query, $mime_type) {
-                        $query->where('mime_type', 'like', $mime_type.'%');
-                    })
-                    ->paginate($filter['per_page']);
+        /**
+         * var $modal = Media;
+         */
+        $data = $this->model::orderBy('created_at', 'desc')
+            ->when($filter['name'], function ($query, $name) {
+                $query->where('name', 'like', '%' . $name . '%');
+            })
+            ->when($filter['mime_type'], function ($query, $mime_type) {
+                $query->where('mime_type', 'like', $mime_type . '%');
+            })
+            ->paginate($filter['per_page']);
 
         return MediaResource::collection($data);
     }
 
     public function stats($disk = null, $type = null)
     {
-        return Media::all()->sum('size'); //17566633 return item count, total size grouped
+        return $this->model::all()->sum('size'); //17566633 return item count, total size grouped
     }
 
     public function upload()
@@ -45,7 +50,7 @@ class MediableController
         $message = null;
 
         $file = request()->file('file');
-        $item =  MediaUploader::fromFile($file)->toDisk($disk)->upload();
+        $item = MediaUploader::fromFile($file)->toDisk($disk)->upload();
 
         if ($item->isOfType('image')) {
             //@todo support s3 conversions, problem to read source as well
@@ -65,7 +70,7 @@ class MediableController
 
         $config = config('nova-mediable-manager.conversions');
 
-        $previewDir = $item->getKey().'/'.'conversions/preview/';
+        $previewDir = $item->getDirectory() . '/' . 'conversions/preview/';
 
         if ($item->filesystem()->exists($previewDir)) {
             // conversion already exist redo ?!?
@@ -86,12 +91,12 @@ class MediableController
                 $constraint->upsize();
             });
 
-            $item->filesystem()->put($previewDir.$item->file_name, (string) $preview->encode());
+            $item->filesystem()->put($previewDir . $item->file_name, (string)$preview->encode());
 
             $data = $preview->filesize();
 
             $image->destroy();
-            
+
             $preview->destroy();
         } else {
             // trow some error
@@ -102,7 +107,7 @@ class MediableController
 
     public function delete($id)
     {
-        return Media::findOrFail($id)->delete();
+        return $this->model::findOrFail($id)->delete();
     }
 
     public function mediable()
@@ -123,7 +128,7 @@ class MediableController
     public function attach($id)
     {
         $mediable = $this->getMediable();
-        $media = new Media;
+        $media = new $this->model;
         $media->id = $id;
 
         $collection = request()->get('collection');
@@ -140,7 +145,7 @@ class MediableController
     public function detach($id)
     {
         $mediable = $this->getMediable();
-        $media = new Media;
+        $media = new $this->model;
         $media->id = $id;
 
         $collection = request()->get('collection');
@@ -166,7 +171,7 @@ class MediableController
 
     private function getMediable()
     {
-        $model =  app(request()->get('model'));
+        $model = app(request()->get('model'));
         $model_id = request()->get('model_id');
 
         return $model::find($model_id);

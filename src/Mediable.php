@@ -4,16 +4,17 @@ namespace Khoahuynhvietswiss\NovaMediableManager;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Field;
-use Khoahuynhvietswiss\NovaMediableManager\Models\MediaUploader;
-use Khoahuynhvietswiss\NovaMediableManager\Models\Media;
-use Khoahuynhvietswiss\NovaMediableManager\Http\Resources\Media as MediaResource;
+use NaskaIt\NovaMediableManager\Models\MediaUploader;
+use NaskaIt\NovaMediableManager\Models\Media;
+use NaskaIt\NovaMediableManager\Http\Resources\Media as MediaResource;
+use Illuminate\Support\Facades\App;
 
 class Mediable extends Field
 {
     public $flexible = false;
     public $flexibleSuffix = null;
     public $single = false;
-    
+    protected $model;
     /**
      * The field's component.
      *
@@ -23,6 +24,7 @@ class Mediable extends Field
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
+        $this->model = App::make(config('nova-mediable-manager.model'));
         parent::__construct($name, $attribute, $resolveCallback);
 
         \Log::info('Mediable Construct');
@@ -43,8 +45,8 @@ class Mediable extends Field
     /**
      * Resolve the field's value.
      *
-     * @param  mixed  $resource
-     * @param  string|null  $attribute
+     * @param mixed $resource
+     * @param string|null $attribute
      * @return void
      */
     public function resolve($resource, $attribute = null)
@@ -53,8 +55,8 @@ class Mediable extends Field
         $collection = $attribute;
 
         if ($this->flexible) {
-            \Log::info('Flexible: '.$attribute);
-            \Log::info('Flexible: '.$resource->key);
+            \Log::info('Flexible: ' . $attribute);
+            \Log::info('Flexible: ' . $resource->key);
             $collection = $this->resolveFlexibleCollection($attribute);
         }
 
@@ -84,15 +86,15 @@ class Mediable extends Field
     /**
      * Hydrate the given attribute on the model based on the incoming request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
      * @return mixed
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        
+
         // - use suffix to greb value but set collection without suffix, because of coversion definision
         if ($request->exists($requestAttribute)) {
             $value = json_decode($request[$requestAttribute]);
@@ -114,8 +116,8 @@ class Mediable extends Field
 
                 if (is_subclass_of($model, 'Illuminate\Database\Eloquent\Model')) {
                     $model::created(function ($model) use ($single, $value, $flexibleSuffix, $flexible, $requestAttribute) {
-                        
-                        $collection =   $requestAttribute;//.$flexibleSuffix;
+
+                        $collection = $requestAttribute;//.$flexibleSuffix;
 
                         if ($single && $model->hasMedia($collection)) {
                             $model->clearMediaGroup($collection);
