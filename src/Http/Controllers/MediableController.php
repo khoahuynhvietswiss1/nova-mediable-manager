@@ -2,10 +2,10 @@
 
 namespace Khoahuynhvietswiss\NovaMediableManager\Http\Controllers;
 
-use NaskaIt\NovaMediableManager\Models\Media;
-use NaskaIt\NovaMediableManager\MediaUploader;
+use Khoahuynhvietswiss\NovaMediableManager\Models\Media;
+use Khoahuynhvietswiss\NovaMediableManager\MediaUploader;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NaskaIt\NovaMediableManager\Http\Resources\Media as MediaResource;
+use Khoahuynhvietswiss\NovaMediableManager\Http\Resources\Media as MediaResource;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\App;
 
